@@ -1,6 +1,6 @@
 class Status < ActiveHash::Base
 
-  self.data[
+  self.data = [
 
     {id: 0, name: "plenty"},
     {id: 1, name: "little"},
