@@ -1,4 +1,4 @@
-class Status < ActiveHash::base
+class Status < ActiveHash::Base
 
   self.data[
 

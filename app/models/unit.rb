@@ -1,4 +1,4 @@
-class Unit < ActiveHash::base
+class Unit < ActiveHash::Base
 
   self.data[
 
