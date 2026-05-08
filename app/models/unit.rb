@@ -13,6 +13,6 @@ class Unit < ActiveHash::Base
     ]
 
   include ActiveHash::Associations
-  has_many :FridgeItem
+  has_many :fridge_items
 
 end

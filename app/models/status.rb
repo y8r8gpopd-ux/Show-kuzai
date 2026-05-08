@@ -9,6 +9,6 @@ class Status < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :FridgeItems
+  has_many :fridge_items
 
 end
