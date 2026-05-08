@@ -7,6 +7,7 @@
 |name|string|null: false|
 |email|string|null: false, unique: true|
 |encrypted_password|string|null: false|
+|admin|boolean|null: false, default: false|
 
 ## usersアソシエーション
 
