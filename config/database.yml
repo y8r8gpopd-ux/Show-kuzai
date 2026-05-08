@@ -58,5 +58,5 @@ production:
   <<: *default
   database: show_kuzai_production
   username: root
-  password: <%= ENV["SHOW_KUZAI_DATABASE_PASSWORD"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
   socket: /var/lib/mysql/mysql.sock
