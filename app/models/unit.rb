@@ -14,5 +14,6 @@ class Unit < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :fridge_items
+  has_many :recipe_ingredients
 
 end
