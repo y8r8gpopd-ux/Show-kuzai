@@ -1,2 +1,59 @@
-<h1>FridgeItems#index</h1>
-<p>Find me in app/views/fridge_items/index.html.erb</p>
+<div class="main">
+
+  <!-- レシピ提案エリア -->
+  <section class="recipe-section">
+    <h2>あなたにおすすめのレシピ</h2>
+
+    <div class="recipe-card">
+      <img src="https://placehold.jp/300x200.png" alt="親子丼">
+      <div class="recipe-body">
+        <h3>親子丼</h3>
+        <p>冷蔵庫の「卵」「鶏肉」を使えます！</p>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <img src="https://placehold.jp/300x200.png" alt="肉豆腐">
+      <div class="recipe-body">
+        <h3>肉豆腐</h3>
+        <p>余っている豆腐を活用できます！</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 食材登録フォーム -->
+  <section class="fridge-section">
+    <h2>食材を登録</h2>
+
+    <form class="ingredient-form">
+      <input type="text" placeholder="食材名を入力">
+      
+      <select>
+        <option>状態を選択</option>
+        <option>買ったばかり</option>
+        <option>あと少し</option>
+      </select>
+
+      <button type="submit">追加する</button>
+    </form>
+  </section>
+
+  <!-- 料理履歴 -->
+  <section class="history-section">
+    <h2>最近作った料理</h2>
+
+    <div class="history-card">
+      <p>🍳 カレーライス</p>
+      <span>2026/05/08</span>
+    </div>
+
+    <div class="history-card">
+      <p>🥗 野菜炒め</p>
+      <span>2026/05/06</span>
+    </div>
+  </section>
+
+  <%= link_to '食材登録', new_ingredient_path %>
+  <br>
+  <%= link_to '登録食材一覧', ingredients_path %>
+</div>
