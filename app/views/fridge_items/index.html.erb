@@ -1,11 +1,5 @@
 <div class="main">
 
-  <!-- ヘッダー -->
-  <header class="top-header">
-    <h1>Show食材</h1>
-    <p>冷蔵庫から、今日のごはんを見つけよう</p>
-  </header>
-
   <!-- レシピ提案エリア -->
   <section class="recipe-section">
     <h2>あなたにおすすめのレシピ</h2>
@@ -59,4 +53,7 @@
     </div>
   </section>
 
+  <%= link_to '食材登録', new_ingredient_path %>
+  <br>
+  <%= link_to '登録食材一覧', ingredients_path %>
 </div>
