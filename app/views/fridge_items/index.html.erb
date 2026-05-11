@@ -1,5 +1,17 @@
-<h1>test</h1>
+ <section class="recipe-section">
+    <h2>あなたにおすすめのレシピ</h2>
 
-<% @recipes.each do |recipe| %>
-  <p><%= recipe.name %></p>
-<% end %>
+    <% @recipes.each do |recipe| %>
+      <div class="recipe-card">
+      <%# if recipe.image.attached? %>
+        <%#= link_to image_tag(recipe.image), recipe_path(recipe.id) %>
+      <%# else %>
+        <%#= image_tag 'dummy.png' %>
+      <%# end %>
+        <div class="recipe-body">
+          <h3><%= recipe.name %></h3>
+          <p>冷蔵庫の「卵」「鶏肉」を使えます！</p>
+        </div>
+      </div>
+    <% end %>
+  </section>
