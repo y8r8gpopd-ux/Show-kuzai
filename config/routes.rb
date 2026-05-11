@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   resources :fridge_items, only: :index
   resources :ingredients, only: [:index, :new, :create]
-  resources :recipes, only: [:index, :new, :create]
+  resources :recipes, only: [:index, :new, :create, :show]
 end

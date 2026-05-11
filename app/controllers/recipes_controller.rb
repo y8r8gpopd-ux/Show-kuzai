@@ -4,6 +4,10 @@ class RecipesController < ApplicationController
     @recipe.recipe_ingredients.build
   end
 
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
+
   def create
     @recipe = Recipe.new(recipe_params)
 

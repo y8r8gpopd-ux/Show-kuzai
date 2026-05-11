@@ -1,7 +1,9 @@
 class Recipe < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
   has_one_attached :image
+  belongs_to :genre
   accepts_nested_attributes_for :recipe_ingredients,
                                 allow_destroy: true,
                                 reject_if: proc { |attrs| 

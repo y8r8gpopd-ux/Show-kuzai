@@ -136,3 +136,160 @@ section h2 {
 .ingredient-area{
   display: block;
 }
+
+/* =========================
+   レシピ詳細ページ
+========================= */
+
+.show-main {
+  padding: 20px 16px 40px;
+}
+
+/* タイトルエリア */
+
+.recipe-show-header {
+  margin-bottom: 24px;
+}
+
+.recipe-show-title {
+  font-size: 40px;
+  font-weight: bold;
+  color: #6b2f1f;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.recipe-show-genre {
+  margin-top: 8px;
+  font-size: 16px;
+  color: #9b6b5b;
+  font-weight: bold;
+}
+
+/* 画像と材料 */
+
+.recipe-show-content {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 36px;
+}
+
+/* 画像 */
+
+.recipe-show-image-area {
+  width: 55%;
+}
+
+.recipe-show-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+
+  border-radius: 20px;
+  border: 3px solid #e6b7a3;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* 材料 */
+
+.recipe-show-ingredients {
+  width: 45%;
+}
+
+.recipe-show-ingredients h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+
+  font-size: 28px;
+  color: #6b2f1f;
+}
+
+.ingredient-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredient-list li {
+  background-color: #fff;
+
+  border-radius: 12px;
+
+  padding: 10px 12px;
+  margin-bottom: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.ingredient-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ingredient-quantity {
+  font-size: 14px;
+  color: #9b6b5b;
+}
+
+/* 作り方 */
+
+.recipe-how-to {
+  margin-top: 12px;
+}
+
+.recipe-how-to h2 {
+  text-align: center;
+
+  font-size: 34px;
+  color: #6b2f1f;
+
+  margin-bottom: 20px;
+}
+
+.how-to-body {
+  background-color: #fff;
+
+  border: 2px dashed #d9a38d;
+  border-radius: 24px;
+
+  padding: 24px;
+
+  min-height: 300px;
+
+  line-height: 2;
+  font-size: 16px;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* スマホ向け */
+
+@media (max-width: 768px) {
+
+  .recipe-show-title {
+    font-size: 32px;
+  }
+
+  .recipe-show-content {
+    flex-direction: column;
+  }
+
+  .recipe-show-image-area,
+  .recipe-show-ingredients {
+    width: 100%;
+  }
+
+  .recipe-show-ingredients h2 {
+    margin-top: 20px;
+  }
+
+  .recipe-how-to h2 {
+    font-size: 28px;
+  }
+}
