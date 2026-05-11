@@ -9,6 +9,18 @@
   </head>
 
   <body>
+   <header class="top-header">
+      <div class="logo-box">
+        <%#= link_to image_tag('dummy.png', class: 'top-header-logo'), root_path %>
+        <p>冷蔵庫から、今日のごはんを見つけよう</p>
+      </div>
+      <ul class="top-header-menu">
+        <li>あなたの冷蔵庫</li>
+        <li>メニュー検索</li>
+        <li>おしらせ</li>
+      </ul>
+    </header>
+
     <%= yield %>
   </body>
 </html>
