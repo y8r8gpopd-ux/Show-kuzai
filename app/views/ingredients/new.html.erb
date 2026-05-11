@@ -1,10 +1,12 @@
 <div class="ingredient-form">
+
   <%# 食材登録時のエラーメッセージ %>
   <% if flash[:alert] %>
     <div class="error-message">
       <%= flash[:alert] %>
     </div>
   <% end %>
+  <%# 食材登録時のエラーメッセージ %>
 
   <%= form_with model: @ingredient, local: true do |f| %>
     <%= f.text_field :name, class: 'ingredient-area' %>

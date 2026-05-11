@@ -4,21 +4,16 @@
   <section class="recipe-section">
     <h2>あなたにおすすめのレシピ</h2>
 
-    <div class="recipe-card">
-      <img src="https://placehold.jp/300x200.png" alt="親子丼">
-      <div class="recipe-body">
-        <h3>親子丼</h3>
-        <p>冷蔵庫の「卵」「鶏肉」を使えます！</p>
-      </div>
-    </div>
+    <% @recipes.each do |recipe| %>
+      <div class="recipe-card">
 
-    <div class="recipe-card">
-      <img src="https://placehold.jp/300x200.png" alt="肉豆腐">
-      <div class="recipe-body">
-        <h3>肉豆腐</h3>
-        <p>余っている豆腐を活用できます！</p>
+        <%= link_to image_tag(recipe.image), recipe_path(recipe.id) %>
+        <div class="recipe-body">
+          <h3><%= recipe.name %></h3>
+          <p>冷蔵庫の「卵」「鶏肉」を使えます！</p>
+        </div>
       </div>
-    </div>
+    <% end %>
   </section>
 
   <!-- 食材登録フォーム -->
@@ -56,4 +51,7 @@
   <%= link_to '食材登録', new_ingredient_path %>
   <br>
   <%= link_to '登録食材一覧', ingredients_path %>
+  <br>
+  <%= link_to 'レシピ投稿', new_recipe_path %>
+</div
 </div>

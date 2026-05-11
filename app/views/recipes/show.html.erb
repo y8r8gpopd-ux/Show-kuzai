@@ -1,0 +1,53 @@
+<div class="show-main">
+
+  <!-- レシピタイトル -->
+  <div class="recipe-show-header">
+    <h1 class="recipe-show-title">
+      <%= @recipe.name %>
+    </h1>
+
+    <div class="recipe-show-genre">
+      <%= @recipe.genre.name %>
+    </div>
+  </div>
+
+  <!-- 画像 + 材料 -->
+  <div class="recipe-show-content">
+
+    <!-- 画像 -->
+    <div class="recipe-show-image-area">
+      <%= image_tag @recipe.image, class: "recipe-show-image" %>
+    </div>
+
+    <!-- 材料 -->
+    <div class="recipe-show-ingredients">
+      <h2>材料</h2>
+
+      <ul class="ingredient-list">
+        <% @recipe.recipe_ingredients.each do |ingredient| %>
+          <li>
+            <span class="ingredient-name">
+              <%= ingredient.ingredient.name %>
+            </span>
+
+            <span class="ingredient-quantity">
+              <%= ingredient.quantity %>
+              <%= ingredient.unit.name %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- 作り方 -->
+  <div class="recipe-how-to">
+    <h2>作り方</h2>
+
+    <div class="how-to-body">
+      <%= simple_format(@recipe.how_to_cook) %>
+    </div>
+  </div>
+
+</div>
