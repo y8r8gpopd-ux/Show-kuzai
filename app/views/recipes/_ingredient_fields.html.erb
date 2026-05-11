@@ -1,5 +1,5 @@
 <div class="ingredient-card" data-index="INDEX">
-  <%= f.collection_select(:ingredient_id, Ingredient.all, :id, :name) %>
+  <%= f.collection_select(:ingredient_id, Ingredient.all, :id, :name,{prompt: "---"}) %>
   <%= f.number_field :quantity %>
   <%= f.collection_select(:unit_id, Unit.all, :id, :name, {}, { class: "unit-select" }) %>
   <button type="button" class="delete-btn">
