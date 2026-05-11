@@ -16,7 +16,11 @@
 
     <!-- 画像 -->
     <div class="recipe-show-image-area">
+    <% if @recipe.image.attached? %>
       <%= image_tag @recipe.image, class: "recipe-show-image" %>
+    <% else %>
+      <%= image_tag 'dummy.png', class: "recipe-show-image" %>
+    <% end %>
     </div>
 
     <!-- 材料 -->
