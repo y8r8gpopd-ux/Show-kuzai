@@ -1,0 +1,22 @@
+<div class="main">
+
+  <div class="recipe-form">
+    <%= form_with model: @recipe do |f| %>
+      <%= f.text_field :name %>
+      <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}) %>
+      <%= f.file_field :image %>
+      <%= f.fields_for :recipe_ingredients do |ri| %>      
+        <div class="ingredient-card">
+          <%= ri.collection_select(:ingredient_id, Ingredient.all, :id, :name, {}) %>
+          <%= ri.number_field :quantity %>
+          <%= ri.collection_select(:unit_id, Unit.all, :id, :name, {}) %>
+        </div>
+      <% end %>
+        
+      <%= f.text_area :how_to_cook %>
+      <%= f.submit %>
+
+    <% end %>
+  </div>
+
+</div>

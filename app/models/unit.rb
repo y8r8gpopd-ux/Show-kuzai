@@ -10,6 +10,7 @@ class Unit < ActiveHash::Base
     {id: 5, name: "匹"},
     {id: 6, name: "杯"},
     {id: 7, name: "丁"}
+    
     ]
 
   include ActiveHash::Associations
