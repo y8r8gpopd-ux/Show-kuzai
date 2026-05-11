@@ -1,1 +1,60 @@
-<h1> test </h1>
+<div class="main">
+
+  <!-- レシピ提案エリア -->
+  <section class="recipe-section">
+    <h2>あなたにおすすめのレシピ</h2>
+
+    <% @recipes.each do |recipe| %>
+      <div class="recipe-card">
+      <%# if recipe.image.attached? %>
+        <%#= link_to image_tag(recipe.image), recipe_path(recipe.id) %>
+      <%# else %>
+        <%#= image_tag 'dummy.png' %>
+      <%# end %>
+        <div class="recipe-body">
+          <h3><%= recipe.name %></h3>
+          <p>冷蔵庫の「卵」「鶏肉」を使えます！</p>
+        </div>
+      </div>
+    <% end %>
+  </section>
+
+  <!-- 食材登録フォーム -->
+  <section class="fridge-section">
+    <h2>食材を登録</h2>
+
+    <form class="ingredient-form">
+      <input type="text" placeholder="食材名を入力">
+      
+      <select>
+        <option>状態を選択</option>
+        <option>買ったばかり</option>
+        <option>あと少し</option>
+      </select>
+
+      <button type="submit">追加する</button>
+    </form>
+  </section>
+
+  <!-- 料理履歴 -->
+  <section class="history-section">
+    <h2>最近作った料理</h2>
+
+    <div class="history-card">
+      <p>🍳 カレーライス</p>
+      <span>2026/05/08</span>
+    </div>
+
+    <div class="history-card">
+      <p>🥗 野菜炒め</p>
+      <span>2026/05/06</span>
+    </div>
+  </section>
+
+  <%= link_to '食材登録', new_ingredient_path %>
+  <br>
+  <%= link_to '登録食材一覧', ingredients_path %>
+  <br>
+  <%= link_to 'レシピ投稿', new_recipe_path %>
+</div
+</div>
