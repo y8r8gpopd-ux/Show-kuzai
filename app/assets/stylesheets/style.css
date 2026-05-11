@@ -47,6 +47,11 @@ section h2 {
 
 /* レシピカード */
 
+.recipe-section{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .recipe-card {
   background-color: #ffffff;
   border-radius: 16px;

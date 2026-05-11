@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to root_path
     else
+      flash.now[:alert] = "リロードしてやり直してください"
       render :new, status: :unprocessable_entity
     end
   end
