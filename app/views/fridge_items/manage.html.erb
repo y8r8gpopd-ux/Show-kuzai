@@ -1,0 +1,11 @@
+<div =class"user_fridge">
+  <% @fridge_items.each do |item| %>
+    <%= form_with model: item, local: true do |f| %>
+      <p><%= item.ingredient.name %></p>
+      <%= f.number_field :quantity %>
+      <%= f.collection_select(:unit_id, Unit.all, :id, :name, {}) %>
+      <%= f.collection_select(:status_id, Status.all, :id, :name, {}) %>
+      <%= f.submit "更新する" %>
+    <% end %>
+  <% end %>
+</div>

@@ -16,9 +16,21 @@ class FridgeItemsController < ApplicationController
 
   end
 
+  def manage
+    @fridge_items = FridgeItem.where(user_id: current_user.id)
+  end
+
+  def update
+    @fridge_item = FridgeItem.find(params[:id])
+    if @fridge_item.update(fridge_item_params)
+      redirect_to root_path
+    else
+      render :manage, status: :unprocessable_entity
+    end
+  end
 
   private
   def fridge_item_params
-    params.require(:fridge_item).permit(:ingredient_id, :unit_id, :quantity).merge(user_id: current_user.id)
+    params.require(:fridge_item).permit(:ingredient_id, :unit_id, :quantity, :status_id).merge(user_id: current_user.id)
   end
 end

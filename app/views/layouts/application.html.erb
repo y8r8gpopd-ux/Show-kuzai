@@ -16,7 +16,7 @@
       </div>
       <ul class="top-header-menu">
         <% if user_signed_in? %>
-          <li><a href="#"> あなたの冷蔵庫 </a></li>
+          <li><%= link_to 'あなたの冷蔵庫', manage_fridge_items_path %></li>
         <% else %>
           <li><%= link_to 'ログイン', new_user_session_path %></li>
           <li><%= link_to '新規登録',  new_user_registration_path %></li>
