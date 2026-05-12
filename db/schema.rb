@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_10_124038) do
   create_table "fridge_items", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "ingredient_id", null: false
-    t.integer "status", default: 0, null: false
+    t.integer "status_id", default: 0, null: false
     t.integer "quantity"
     t.integer "unit_id"
     t.date "purchased_at", null: false

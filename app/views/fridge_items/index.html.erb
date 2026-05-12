@@ -1,37 +1,36 @@
 <div class="main"> 
   <section class="recipe-section">
-    <h2>あなたにおすすめのレシピ</h2>
-
-    <% @recipes.each do |recipe| %>
-      <div class="recipe-card">
-      <% if recipe.image.attached? %>
-        <%= link_to image_tag(recipe.image), recipe_path(recipe.id) %>
-      <% else %>
-        <%= image_tag 'dummy.png' %>
-      <% end %>
-        <div class="recipe-body">
-          <h3><%= recipe.name %></h3>
-          <p>冷蔵庫の「卵」「鶏肉」を使えます！</p>
+    <h2 class="recipe-title">あなたにおすすめのレシピ</h2>
+    
+    <div class="recipe-area">
+      <% @recipes.each do |recipe| %>
+        <div class="recipe-card">
+        <% if recipe.image.attached? %>
+          <%= link_to image_tag(recipe.image), recipe_path(recipe.id) %>
+        <% else %>
+          <%= image_tag 'dummy.png' %>
+        <% end %>
+          <div class="recipe-body">
+            <h3><%= recipe.name %></h3>
+            <p>冷蔵庫の「卵」「鶏肉」を使えます！</p>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </section>
 
   <!-- 食材登録フォーム -->
   <section class="fridge-section">
     <h2>食材を登録</h2>
 
-    <form class="ingredient-form">
-      <input type="text" placeholder="食材名を入力">
-      
-      <select>
-        <option>状態を選択</option>
-        <option>買ったばかり</option>
-        <option>あと少し</option>
-      </select>
-
-      <button type="submit">追加する</button>
-    </form>
+    <div class="ingredient-form">
+      <%= form_with model: @fridge_item, local: true do |f| %>
+        <%= f.collection_select(:ingredient_id, Ingredient.all, :id, :name,{prompt: "---"})  %>
+        <%= f.number_field :quantity %>
+        <%= f.collection_select(:unit_id, Unit.all, :id, :name,{}) %>
+        <%= f.submit '冷蔵庫に追加する' %>
+      <% end %>
+    </div>
   </section>
 
   <!-- 料理履歴 -->
