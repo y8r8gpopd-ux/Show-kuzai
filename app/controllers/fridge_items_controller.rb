@@ -7,10 +7,11 @@ class FridgeItemsController < ApplicationController
   def create
     @fridge_item = FridgeItem.new(fridge_item_params)
     @fridge_item.purchased_at = Date.today
-    if fridge_item.save
-      redirect_to ingredients_path
+    if @fridge_item.save
+      redirect_to root_path
     else
-      render :index
+      @recipes = Recipe.all
+      render :index, status: :unprocessable_entity
     end
 
   end
@@ -18,6 +19,6 @@ class FridgeItemsController < ApplicationController
 
   private
   def fridge_item_params
-    params.require(:fridge_item).permit(:unit_id, :quantity).marge(user_id: current_user.id, ingredient_id: params[:ingredient_id])
+    params.require(:fridge_item).permit(:ingredient_id, :unit_id, :quantity).merge(user_id: current_user.id)
   end
 end

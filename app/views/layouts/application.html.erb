@@ -15,7 +15,12 @@
         <p>冷蔵庫から、今日のごはんを見つけよう</p>
       </div>
       <ul class="top-header-menu">
-        <li>あなたの冷蔵庫</li>
+        <% if user_signed_in? %>
+          <li><a href="#"> あなたの冷蔵庫 </a></li>
+        <% else %>
+          <li><%= link_to 'ログイン', new_user_session_path %></li>
+          <li><%= link_to '新規登録',  new_user_registration_path %></li>
+        <% end %>
         <li>メニュー検索</li>
         <li>おしらせ</li>
       </ul>
