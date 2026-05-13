@@ -3,7 +3,11 @@ class FridgeItemsController < ApplicationController
     @fridge_item = FridgeItem.new
 
     if user_signed_in?
-      ingredient_ids = current_user.fridge_items.pluck(:ingredient_id)
+      ingredient_ids = current_user.fridge_items
+                                   .available
+                                   .pluck(:ingredient_id)
+
+
       @recipes = Recipe.joins(:recipe_ingredients).where(recipe_ingredients: { ingredient_id: ingredient_ids })
                                                   .group("recipes.id")
                                                   .order("COUNT(recipe_ingredients.id) DESC")

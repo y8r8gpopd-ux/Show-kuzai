@@ -6,4 +6,6 @@ class FridgeItem < ApplicationRecord
   belongs_to :status
   
   validates :ingredient_id, presence: true
+
+  scope :available, -> { where.not(status_id: 2) }
 end

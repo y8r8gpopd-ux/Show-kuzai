@@ -7,6 +7,13 @@ Rails.application.routes.draw do
       get :manage
     end
   end
+  
+  resources :recipes, only: [:index, :new, :create, :show, :update] do
+    member do
+      patch :cook
+    end
+  end
+
   resources :ingredients, only: [:index, :new, :create]
-  resources :recipes, only: [:index, :new, :create, :show]
+
 end

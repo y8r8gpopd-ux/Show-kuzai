@@ -19,6 +19,19 @@ class RecipesController < ApplicationController
     end
   end
 
+  def cook
+    @recipe = Recipe.find(params[:id])
+
+    ingredient_ids = @recipe.recipe_ingredients.pluck(:ingredient_id)
+
+    current_user.fridge_items
+                .available
+                .where(ingredient_id: ingredient_ids)
+                .update_all(status_id: 2)
+
+    redirect_to root_path
+  end
+
   private
     def recipe_params
       params.require(:recipe).permit(

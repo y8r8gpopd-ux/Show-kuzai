@@ -283,6 +283,19 @@ section h2 {
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
+.cooked-btn{
+  height: 70px;
+  width: 150px;
+  background-color: #d9a38d;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px auto;
+  display: block;
+}
+
 /* スマホ向け */
 
 @media (max-width: 768px) {
