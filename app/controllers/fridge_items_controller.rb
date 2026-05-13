@@ -2,15 +2,29 @@ class FridgeItemsController < ApplicationController
   def index
     @fridge_item = FridgeItem.new
 
-    if user_signed_in?
-      ingredient_ids = current_user.fridge_items
-                                   .available
-                                   .pluck(:ingredient_id)
+    if user_signed_in? && current_user.fridge_items.any?
+      fridge_items = current_user.fridge_items.available
+      ingredient_ids = fridge_items.pluck(:ingredient_id)
 
+      recipes = Recipe.joins(:recipe_ingredients)
+                      .where(recipe_ingredients: { ingredient_id: ingredient_ids })
+                      .distinct
 
-      @recipes = Recipe.joins(:recipe_ingredients).where(recipe_ingredients: { ingredient_id: ingredient_ids })
-                                                  .group("recipes.id")
-                                                  .order("COUNT(recipe_ingredients.id) DESC")
+      @recipes = recipes.all.sort_by do |recipe|
+        score = 0
+        recipe.recipe_ingredients.each do |ri|
+          fridge_item = fridge_items.find do |item|
+            item.ingredient_id == ri.ingredient_id
+          end
+
+          if fridge_item
+            score += (Date.today - fridge_item.purchased_at).to_i
+          end
+        end
+
+        -score
+      end
+
     else
       @recipes = Recipe.all
     end
