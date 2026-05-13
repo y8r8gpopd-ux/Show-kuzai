@@ -12,11 +12,11 @@
    <header class="top-header">
       <div class="logo-box">
         <%= link_to image_tag('dummy.png', class: 'top-header-logo'), root_path %>
-        <p>冷蔵庫から、今日のごはんを見つけよう</p>
+        <p>今日のごはんを見つけよう</p>
       </div>
       <ul class="top-header-menu">
         <% if user_signed_in? %>
-          <il><%= link_to 'ログアウト', destroy_user_session_path, data: {turbo_method: :delete} %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, data: {turbo_method: :delete} %></li>
           <li><%= link_to 'あなたの冷蔵庫', manage_fridge_items_path %></li>
         <% else %>
           <li><%= link_to 'ログイン', new_user_session_path %></li>

@@ -1,7 +1,11 @@
 <div class="main"> 
   <section class="recipe-section">
-    <h2 class="recipe-title">あなたにおすすめのレシピ</h2>
-    
+    <% if user_signed_in? %>
+      <h2 class="recipe-title">あなたにおすすめのレシピ</h2>
+    <% else %>
+      <h2 class="recipe-title">おすすめのレシピ</h2>
+    <% end %>
+
     <div class="recipe-area">
       <% if @recipes.present? %>
         <% @recipes.each do |recipe| %>
