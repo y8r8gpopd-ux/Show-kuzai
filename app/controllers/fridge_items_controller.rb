@@ -8,7 +8,7 @@ class FridgeItemsController < ApplicationController
       # そこから食材ID抽出    
       ingredient_ids = fridge_items.pluck(:ingredient_id)   
 
-      # レシピに中間テーブル接続 ユーザーの使い切ってない食材指定 重複は除外
+      # ・レシピに中間テーブル接続 ・ユーザーの使い切ってない食材指定 ・重複は除外
       recipes = Recipe.joins(:recipe_ingredients)           
                       .where(recipe_ingredients: { ingredient_id: ingredient_ids })    
                       .distinct                             
