@@ -271,6 +271,11 @@ section h2 {
   color: #9b6b5b;
 }
 
+/* 冷蔵庫一覧 */
+.user-fridge{
+  justify-content: center;
+}
+
 /* 作り方 */
 
 .recipe-how-to {

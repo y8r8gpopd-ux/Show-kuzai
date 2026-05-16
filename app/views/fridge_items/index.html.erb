@@ -18,14 +18,25 @@
             <div class="recipe-body">
               <h3><%= recipe.name %></h3>
               <% if user_signed_in? %>
-                <p>冷蔵庫の食材を使えます！</p>
+                <% matched_ingredients = recipe.ingredients.select do |ingredient| %>
+                  <% @fridge_ingredient_ids.include?(ingredient.id) %>
+                <% end %>
+
+                <% if matched_ingredients.any? %>
+                  <p>冷蔵庫の
+                    <% matched_ingredients.each do |ingredient| %>
+                      「<%= ingredient.name %>」
+                    <% end %>
+                  が使えます！</p>
+                <% end %>
+            
               <% end %>
             </div>
           </div>
         <% end %>
       <% end %>
     </div>
-
+    <p>おすすめ順</p>
   </section>
 
   <!-- 食材登録フォーム -->

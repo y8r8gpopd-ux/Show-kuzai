@@ -3,13 +3,19 @@ class FridgeItemsController < ApplicationController
     @fridge_item = FridgeItem.new
 
     if user_signed_in? && current_user.fridge_items.any?
-      fridge_items = current_user.fridge_items.available
-      ingredient_ids = fridge_items.pluck(:ingredient_id)
+      # ユーザーの冷蔵庫の使い切ってない食材
+      fridge_items = current_user.fridge_items.available 
+      # そこから食材ID抽出    
+      ingredient_ids = fridge_items.pluck(:ingredient_id)   
 
-      recipes = Recipe.joins(:recipe_ingredients)
-                      .where(recipe_ingredients: { ingredient_id: ingredient_ids })
-                      .distinct
+      # レシピに中間テーブル接続 ユーザーの使い切ってない食材指定 重複は除外
+      recipes = Recipe.joins(:recipe_ingredients)           
+                      .where(recipe_ingredients: { ingredient_id: ingredient_ids })    
+                      .distinct                             
 
+      @fridge_ingredient_ids = fridge_items.pluck(:ingredient_id)  # ビューのレシピ表示用のインスタンス
+
+      # トップページに渡すインスタンスをスコアで並べ替えてセット
       @recipes = recipes.all.sort_by do |recipe|
         score = 0
         recipe.recipe_ingredients.each do |ri|
@@ -59,6 +65,6 @@ class FridgeItemsController < ApplicationController
 
   private
   def fridge_item_params
-    params.require(:fridge_item).permit(:ingredient_id, :unit_id, :quantity, :status_id).merge(user_id: current_user.id)
+    params.require(:fridge_item).permit(:ingredient_id, :unit_id, :quantity, :status_id, :purchased_at).merge(user_id: current_user.id)
   end
 end
