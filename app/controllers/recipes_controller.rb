@@ -22,13 +22,18 @@ class RecipesController < ApplicationController
   def cook
     @recipe = Recipe.find(params[:id])
 
-    ingredient_ids = @recipe.recipe_ingredients.pluck(:ingredient_id)
+    # レシピの載っている食材を冷蔵庫の古いものから１つずつ取り出す
+    @recipe.recipe_ingredients.each do |ri|
+      fridge_item = current_user.fridge_items
+                                .available
+                                .where(ingredient_id: ri.ingredient_id)
+                                .order(:purchased_at)
+                                .first
 
-    current_user.fridge_items
-                .available
-                .where(ingredient_id: ingredient_ids)
-                .update_all(status_id: 2)
-
+      # 重複なしで古いもののみstatus更新
+      fridge_item&.update(status_id: 2)
+    end
+                
     redirect_to root_path
   end
 

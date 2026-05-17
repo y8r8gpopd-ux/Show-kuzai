@@ -54,6 +54,7 @@
     </div>
   </div>
 
-  <%= button_to "調理完了！",cook_recipe_path(@recipe),method: :patch , class: "cooked-btn" %>
-
+  <% if user_signed_in? %>
+    <%= button_to "調理完了！",cook_recipe_path(@recipe),method: :patch , class: "cooked-btn" %>
+  <% end %>
 </div>
