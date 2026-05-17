@@ -4,6 +4,8 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_one_attached :image
   belongs_to :genre
+  has_many :cooking_histories
+  
   accepts_nested_attributes_for :recipe_ingredients,
                                 allow_destroy: true,
                                 reject_if: proc { |attrs| 

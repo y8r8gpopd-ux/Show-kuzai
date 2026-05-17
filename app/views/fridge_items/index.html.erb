@@ -55,25 +55,28 @@
     </section>
   <% end %>
 
-  <!-- 料理履歴 -->
-  <section class="history-section">
-    <h2>最近作った料理</h2>
+  <% if user_signed_in? && current_user.cooking_histories.any? %>
+    <!-- 料理履歴 -->
+    <section class="history-section">
+      <h2>最近作った料理</h2>
 
-    <div class="history-card">
-      <p>🍳 カレーライス</p>
-      <span>2026/05/08</span>
-    </div>
+      <% @cooking_histories.each do |history| %>
 
-    <div class="history-card">
-      <p>🥗 野菜炒め</p>
-      <span>2026/05/06</span>
-    </div>
-  </section>
+        <div class="history-card">
+          <p><%= history.recipe.name %></p>
+          <span><%= l history.created_at %></span>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
 
-  <%= link_to '食材登録', new_ingredient_path %>
-  <br>
-  <%= link_to '登録食材一覧', ingredients_path %>
-  <br>
-  <%= link_to 'レシピ投稿', new_recipe_path %>
+  <% if user_signed_in? && current_user.admin? %>
+
+    <%= link_to '食材登録', new_ingredient_path %>
+    <br>
+    <%= link_to '登録食材一覧', ingredients_path %>
+    <br>
+    <%= link_to 'レシピ投稿', new_recipe_path %>
+  <% end %>
   
 </div>

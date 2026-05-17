@@ -35,6 +35,13 @@ class FridgeItemsController < ApplicationController
       @recipes = Recipe.all
     end
 
+    if user_signed_in?
+      @cooking_histories = current_user.cooking_history
+                                       .includes(:recipe)
+                                       .order(created_at: :desc)
+                                       .limit(5)
+    end
+
     render :index
   end
 

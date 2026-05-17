@@ -33,6 +33,9 @@ class RecipesController < ApplicationController
       # 重複なしで古いもののみstatus更新
       fridge_item&.update(status_id: 2)
     end
+
+    # ユーザーの調理履歴作成
+    current_user.cooking_histories.create(recipe_id: @recipe.id)
                 
     redirect_to root_path
   end
