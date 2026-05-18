@@ -320,6 +320,12 @@ section h2 {
   display: block;
 }
 
+.admin-btn{
+  background-color: #d9a38d;
+  border-radius: 7px;
+  margin: 0 15px;
+}
+
 .user-forms{
   max-width: 500px;
   margin: 50px auto 0;

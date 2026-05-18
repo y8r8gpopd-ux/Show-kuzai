@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :recipes, only: [:index, :new, :create, :show, :update] do
+  resources :recipes do
     member do
       patch :cook
     end

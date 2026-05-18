@@ -57,4 +57,9 @@
   <% if user_signed_in? %>
     <%= button_to "調理完了！",cook_recipe_path(@recipe),method: :patch , class: "cooked-btn" %>
   <% end %>
+
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to "レシピ編集",edit_recipe_path(@recipe.id), class: "admin-btn" %>
+    <%= link_to "レシピ削除",recipe_path(@recipe), data: {turbo_method: :delete}, class: "admin-btn" %>
+  <% end %>
 </div>

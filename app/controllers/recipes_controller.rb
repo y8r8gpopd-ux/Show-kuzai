@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update]
+
   def new
     @recipe = Recipe.new
     @recipe.recipe_ingredients.build
@@ -40,6 +42,28 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.new(recipe_params)
+    if @recipe.save
+      redirect_to root_path
+    else
+      flash.now[:alert] = "やり直してください"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    recipe = Recipe.find(params[:id])
+    recipe.destroy
+    redirect_to root_path
+  end
+
+
+
   private
     def recipe_params
       params.require(:recipe).permit(
@@ -55,4 +79,7 @@ class RecipesController < ApplicationController
       )
     end
 
+    def authenticate_admin!
+      redirect_to root_path unless current_user.admin?
+    end
 end
