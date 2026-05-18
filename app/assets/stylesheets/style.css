@@ -320,6 +320,47 @@ section h2 {
   display: block;
 }
 
+.user-forms{
+  max-width: 500px;
+  margin: 50px auto 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: solid 3px #ecdabf;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.user{
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  color: #cc9978
+}
+
+.user-form{
+  width: 80%;
+  height: 25px;
+  font-size: 20px;
+  border: solid 3px #d9a38d;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+ .user-form-btn{
+  display: block;
+  width: 100%;
+  width: 70%;
+  height: 50px;
+  margin: 0 auto;
+  font-size: 20px;
+  border: solid 3px #d9a38d;
+  border-radius: 10px;
+  background-color: #f0c9b0;
+  color: #fffffc
+} 
+
 /* スマホ向け */
 
 @media (max-width: 768px) {
