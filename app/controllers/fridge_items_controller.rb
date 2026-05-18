@@ -1,6 +1,9 @@
 class FridgeItemsController < ApplicationController
   def index
     @fridge_item = FridgeItem.new
+    @recipes = Recipe.all
+    # nilガード↓先に空配列用意して、下のif文で再代入
+    @fridge_ingredient_ids ||= []
 
     if user_signed_in? && current_user.fridge_items.any?
       # ユーザーの冷蔵庫の使い切ってない食材
@@ -31,11 +34,10 @@ class FridgeItemsController < ApplicationController
         -score
       end
 
-    else
-      @recipes = Recipe.all
+    
     end
 
-    if user_signed_in?
+    if user_signed_in? 
       @cooking_histories = current_user.cooking_histories
                                        .includes(:recipe)
                                        .order(created_at: :desc)

@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :fridge_items
   has_many :cooking_histories
+
+  validates :password, format:{with: /\A[a-z0-9]{6,}\z/i }
 end
