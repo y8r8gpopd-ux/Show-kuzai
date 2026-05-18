@@ -36,7 +36,7 @@ class FridgeItemsController < ApplicationController
     end
 
     if user_signed_in?
-      @cooking_histories = current_user.cooking_history
+      @cooking_histories = current_user.cooking_histories
                                        .includes(:recipe)
                                        .order(created_at: :desc)
                                        .limit(5)

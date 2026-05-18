@@ -55,17 +55,19 @@
     </section>
   <% end %>
 
-  <% if user_signed_in? && current_user.cooking_histories.any? %>
+  <% if @cooking_histories.present? %>
     <!-- 料理履歴 -->
     <section class="history-section">
       <h2>最近作った料理</h2>
 
       <% @cooking_histories.each do |history| %>
 
-        <div class="history-card">
-          <p><%= history.recipe.name %></p>
-          <span><%= l history.created_at %></span>
-        </div>
+        <%= link_to recipe_path(history.recipe_id) do %>
+          <div class="history-card">
+            <p><%= history.recipe.name %></p>
+            <span><%= l history.created_at %></span>
+          </div>
+        <% end %>
       <% end %>
     </section>
   <% end %>
