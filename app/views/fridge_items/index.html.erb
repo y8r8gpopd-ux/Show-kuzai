@@ -54,7 +54,7 @@
           <%#= f.number_field :quantity %>
           <%#= f.collection_select(:unit_id, Unit.all, :id, :name,{}) %>
           <div id="selected-ingredients"><span>登録する食材</span></div>
-          <%= f.submit '冷蔵庫に追加する' %>
+          <%= f.submit '冷蔵庫に追加する' , class: 'register-fridge-item' %>
         <% end %>
       </div>
     </section>

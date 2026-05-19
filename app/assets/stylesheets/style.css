@@ -82,7 +82,15 @@ section h2 {
 
 .recipe-area{
   display: flex;
-  flex-wrap: wrap;
+  overflow-x: scroll;
+  gap: 12px;
+  padding-bottom: 10px;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.recipe-area::-webkit-scrollbar {
+  display: none;
 }
 
 .recipe-card {
@@ -91,7 +99,14 @@ section h2 {
   overflow: hidden;
   margin-bottom: 16px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  margin: 0 5px;
+  flex: 0 0 300px;
+  min-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .recipe-card {
+    flex: 0 0 80%;
+  }
 }
 
 .recipe-card img {
@@ -147,9 +162,6 @@ section h2 {
   margin-left: 5px;
 }
 
-/* 食材フォーム */
-
-
 .ingredient-form {
   display: flex;
   flex-direction: column;
@@ -162,6 +174,16 @@ section h2 {
   border: 1px solid #f0c9b0;
   border-radius: 12px;
   font-size: 16px;
+}
+
+.register-fridge-item{
+  padding: 12px;
+  border: 1px solid #f0c9b0;
+  border-radius: 12px;
+  background-color: #ff9966;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .ingredient-form button {
