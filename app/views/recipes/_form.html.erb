@@ -4,7 +4,7 @@
   </div>
 <% end %>
 
-<div class="recipe-card">
+<div class="recipe-form-card">
   <%= form_with model: recipe do |f| %>
     <%= f.text_field :name %>
     <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}) %>

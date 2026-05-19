@@ -1,6 +1,6 @@
 const recipeForm = function () {
 
-  const recipeCard = document.querySelector(".recipe-card");
+  const recipeCard = document.querySelector(".recipe-form-card");
   if (!recipeCard) return;
   const buildIngredientBtn = document.getElementById("add-ingredient");
 

@@ -53,6 +53,8 @@ class IngredientsController < ApplicationController
 
   def search
     @ingredients = Ingredient.where("name LIKE ?", "%#{params[:keyword]}%")
+
+    render json: @ingredients
   end
 
   private

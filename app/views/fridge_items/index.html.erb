@@ -46,9 +46,14 @@
 
       <div class="ingredient-form">
         <%= form_with model: @fridge_item, local: true do |f| %>
-          <%= f.collection_select(:ingredient_id, Ingredient.all, :id, :name,{prompt: "---"})  %>
-          <%= f.number_field :quantity %>
-          <%= f.collection_select(:unit_id, Unit.all, :id, :name,{}) %>
+
+          <%= text_field_tag :keyword, nil, placeholder: "食材名検索", id: "ingredient-search" %>
+          <div id="search-result"></div>
+          <%= hidden_field_tag "fridge_item[ingredient_id]", nil, id: "selected-ingredient-id" %>
+
+          <%#= f.number_field :quantity %>
+          <%#= f.collection_select(:unit_id, Unit.all, :id, :name,{}) %>
+          <div id="selected-ingredients"><span>登録する食材</span></div>
           <%= f.submit '冷蔵庫に追加する' %>
         <% end %>
       </div>

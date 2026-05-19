@@ -48,15 +48,18 @@ class FridgeItemsController < ApplicationController
   end
 
   def create
-    @fridge_item = FridgeItem.new(fridge_item_params)
-    @fridge_item.purchased_at = Date.today
-    if @fridge_item.save
-      redirect_to root_path
-    else
-      @recipes = Recipe.all
-      render :index, status: :unprocessable_entity
+    ingredient_ids = params[:fridge_item][:ingredient_ids] || []
+
+    if ingredient_ids.empty?
+      redirect_to root_path, alert: "食材を選択してください"
+      return
     end
 
+    ingredient_ids.each do |ingredient_id|
+      FridgeItem.create(fridge_item_params.merge(ingredient_id: ingredient_id, purchased_at: Date.today))
+    end
+
+      redirect_to root_path
   end
 
   def manage
@@ -73,7 +76,9 @@ class FridgeItemsController < ApplicationController
   end
 
   private
+  
   def fridge_item_params
-    params.require(:fridge_item).permit(:ingredient_id, :unit_id, :quantity, :status_id, :purchased_at).merge(user_id: current_user.id)
+    params.require(:fridge_item).permit(:quantity, :unit_id).merge(user_id: current_user.id)
   end
+
 end

@@ -114,7 +114,41 @@ section h2 {
   color: #7b5e57;
 }
 
+/* 冷蔵庫登録 */
+
+.search-result-ingredient{
+  background-color: #ffffff;
+  margin-bottom: 10px;
+}
+
+#selected-ingredients{
+  display: flex;
+  margin: 20px 0 10px;
+}
+
+.selected-ingredient{
+  display: flex;
+  text-align: center;
+  background-color: #ffffff;
+  border: solid 1px #ff9966;
+  border-radius: 5px;
+  margin: 0 5px;
+  padding: 2px 5px;
+}
+
+.delete-btn{
+  display: block;
+  height: 15px;
+  width: 15px;
+  font-size: 10px;
+  color: #f17c7c;
+  border: solid 1px #ff9966;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
 /* 食材フォーム */
+
 
 .ingredient-form {
   display: flex;
