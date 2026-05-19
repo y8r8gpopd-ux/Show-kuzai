@@ -10,7 +10,11 @@
 
   <%= form_with model: @ingredient, local: true do |f| %>
     <%= f.text_field :name, class: 'ingredient-area' %>
-    <%= f.submit '食材登録' %>
+    <%= f.submit %>
   <% end %>
 
+  <div class="ingredient-del">
+    <%= link_to '食材削除', ingredient_path(@ingredient.id), data:{turbo_method: :delete}, class: 'ingredient-del-btn' %>
+  </div>
+  
 </div>

@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :ingredients, only: [:index, :new, :create]
+  resources :ingredients do
+    collection do
+      get :search
+    end
+  end
 
 end

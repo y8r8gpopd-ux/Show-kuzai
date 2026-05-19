@@ -1,7 +1,7 @@
 <div class="ingredients-all">
   <% @ingredients.each do |ingredient| %>
     <div class="ingredient-item">
-      <%= ingredient.name %>
+      <%= link_to ingredient.name, edit_ingredient_path(ingredient.id) %>
     </div>
-  <% end %>    
+  <% end %> 
 </div>

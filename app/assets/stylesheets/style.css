@@ -326,6 +326,24 @@ section h2 {
   margin: 0 15px;
 }
 
+/* 管理者用食材管理ページ */
+
+.ingredient-form{
+  margin: 30px 0 0 30px;
+}
+
+.ingredient-del{
+  display: block;
+  height: 30px;
+  width: 80px;
+  margin: 20px 0 0 20px;
+  border: solid 1px #d9a38d;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* ユーザー登録ページ */
+
 .user-forms{
   max-width: 500px;
   margin: 50px auto 0;
