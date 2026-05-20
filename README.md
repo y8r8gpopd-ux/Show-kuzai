@@ -13,6 +13,7 @@
 
 - has_many :fridge_items
 - has_many :cooking_histories
+- has_many :shopping_lists
 
 
 # FRIDGE_ITEMSテーブル
@@ -51,6 +52,7 @@
 - has_many :ingredients, through: recipe_ingredients
 - has_many :recipe_ingredients
 - has_many :cooking_histories
+- has_many :shopping_lists
 
 
 # INGREDIENTSテーブル(食材マスタ)
@@ -89,18 +91,44 @@
 |------|----|------|
 |user_id|references|null: false, foreign_key: true|
 |recipe_id|references|null: false, foreign_key: true|
-|cooked_at|date|null: false|
 
 - belongs_to :user
 - belongs_to :recipe
+
+# SHOPPING_LISTSテーブル
+
+|column|type|option|
+|------|----|------|
+|user_id|references|null: false, foreign_key: true|
+|recipe_id|references|null: false, foreign_key: true|
+
+## shopping_listsアソシエーション
+
+- belongs_to :user
+- belongs_to :recipe
+- has_many :shopping_list_items, dependent: :destroy
+
+
+# SHOPPING_LIST_ITEMSテーブル
+
+|column|type|option|
+|------|----|------|
+|shopping_list_id|references|null: false, foreign_key: true|
+|ingredient_id|references|null: false, foreign_key: true|
+|purchased|boolean|null: false, default: false|
+
+## shopping_list_itemsアソシエーション
+
+- belongs_to :shopping_list
+- belongs_to :ingredient
 
 
 # ACTIVE_HASH
 
 ## status
-- plenty (買ったばかり)
-- little (あとすこし)
-- used_up (使い切った！)
+- たっぷりある
+- あとすこし
+- 使い切った
 __(statusで管理してDBから削除しない)__
 
 ## unit
@@ -111,3 +139,10 @@ __(statusで管理してDBから削除しない)__
 - g
 - ml
 __(追加の可能性あり)__
+
+## genre
+- 和食
+- 洋食
+- 中華
+- イタリアン
+- エスニック
