@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_05_17_074125) do
+ActiveRecord::Schema[7.1].define(version: 2026_05_21_052820) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -87,6 +87,27 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_17_074125) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "shopping_list_items", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "shopping_list_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.boolean "purchased", default: false, null: false
+    t.integer "quantity"
+    t.integer "unit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_shopping_list_items_on_ingredient_id"
+    t.index ["shopping_list_id"], name: "index_shopping_list_items_on_shopping_list_id"
+  end
+
+  create_table "shopping_lists", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_shopping_lists_on_recipe_id"
+    t.index ["user_id"], name: "index_shopping_lists_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -106,4 +127,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_17_074125) do
   add_foreign_key "cooking_histories", "users"
   add_foreign_key "fridge_items", "ingredients"
   add_foreign_key "fridge_items", "users"
+  add_foreign_key "shopping_list_items", "ingredients"
+  add_foreign_key "shopping_list_items", "shopping_lists"
+  add_foreign_key "shopping_lists", "recipes"
+  add_foreign_key "shopping_lists", "users"
 end
