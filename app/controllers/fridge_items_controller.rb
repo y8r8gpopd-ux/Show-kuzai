@@ -38,6 +38,14 @@ class FridgeItemsController < ApplicationController
     end
 
     if user_signed_in? 
+
+      # お買い物リスト用のインスタンス生成
+      if current_user.shopping_lists.any?
+        @shopping_lists = current_user.shopping_lists.includes(:recipe,
+                                        shopping_list_items: :ingredient)
+      end
+
+      # 調理履歴のインスタンス生成 
       @cooking_histories = current_user.cooking_histories
                                        .includes(:recipe)
                                        .order(created_at: :desc)

@@ -8,6 +8,11 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+
+    # レシピに足りない食材表示用インスタンス 
+    @fridge_ingredient_ids = current_user.fridge_items
+                                     .available
+                                     .pluck(:ingredient_id)
   end
 
   def create
@@ -66,34 +71,36 @@ class RecipesController < ApplicationController
     recipe = Recipe.find(params[:id])
 
     # shopping_listをユーザー、レシピのidで保存
-    shopping_list = ShoppingList.create(
+    shopping_list = ShoppingList.new(
       user_id: current_user.id,
       recipe_id: recipe.id
     )
 
-    # ユーザーの冷蔵庫の中身取り出し
-    fridge_ingredient_ids = current_user.fridge_items
-                                        .available
-                                        .pluck(:ingredient_id)
+    if shopping_list.save
+      # ユーザーの冷蔵庫の中身取り出し
+      fridge_ingredient_ids = current_user.fridge_items
+                                          .available
+                                          .pluck(:ingredient_id)
 
-    # 中間テーブルshopping_list_itemに冷蔵庫の食材と照らし合わせてないものだけ保存
-    recipe.recipe_ingredients.each do |ri|
+      # 中間テーブルshopping_list_itemに冷蔵庫の食材と照らし合わせてないものだけ保存
+      recipe.recipe_ingredients.each do |ri|
 
-      unless fridge_ingredient_ids.include?(ri.ingredient_id)
+        unless fridge_ingredient_ids.include?(ri.ingredient_id)
 
-      ShoppingListItem.create(
-        shopping_list_id: shopping_list.id,
-        ingredient_id: ri.ingredient_id,
-        quantity: ri.quantity,
-        unit_id: ri.unit_id
-      )
-
+          ShoppingListItem.create(
+            shopping_list_id: shopping_list.id,
+            ingredient_id: ri.ingredient_id,
+            quantity: ri.quantity,
+            unit_id: ri.unit_id
+          )
+        end
+      end
+      redirect_to root_path
+    else
+      redirect_to recipe_path(recipe), alert: "すでに買い物リストに追加されています"
     end
+
   end
-
-  redirect_to root_path
-end
-
 
   private
     def recipe_params

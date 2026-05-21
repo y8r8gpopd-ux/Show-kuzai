@@ -21,4 +21,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :shopping_lists, only:[:index, :destroy]do
+    member do
+      post :complete
+    end
+  end
+
 end

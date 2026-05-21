@@ -30,7 +30,7 @@
       <ul class="ingredient-list">
         <% @recipe.recipe_ingredients.each do |ingredient| %>
           <li>
-            <span class="ingredient-name">
+            <span class="ingredient-name<%= '-missing' unless @fridge_ingredient_ids.include?(ingredient.ingredient.id) %>">
               <%= ingredient.ingredient.name %>
             </span>
 
@@ -43,7 +43,27 @@
       </ul>
       
       <% if user_signed_in? %>
-        <%= button_to 'お買い物リストに登録', add_to_shopping_list_recipe_path(@recipe), method: :post , class: "add-to-shopping-list-btn" %>
+        <% missing_ingredients = @recipe.ingredients.reject do |ingredient| %>
+          <% @fridge_ingredient_ids.include?(ingredient.id) %>
+        <% end %>
+
+        <% if missing_ingredients.any? %>
+          <p>あと
+          <% missing_ingredients.each do |ingredient| %>
+            「<%= ingredient.name %>」
+          <% end %>
+          があれば作れます！</p>
+          <%= button_to 'お買い物リストに登録', add_to_shopping_list_recipe_path(@recipe), method: :post , class: "add-to-shopping-list-btn" %>
+        <% else %>
+          <p>冷蔵庫の食材だけで作れます！</p>
+        <% end %>
+
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="error-message">
+        <%= flash[:alert] %>
+        </div>
       <% end %>
     </div>
 

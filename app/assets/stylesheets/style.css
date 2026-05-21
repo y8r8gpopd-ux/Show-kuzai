@@ -65,8 +65,26 @@ section h2 {
   margin: 0 auto;
 }
 
-/* レシピカード */
+/* 今日の予定 */
+.plans{
+  display: flex;
+}
 
+.missing-ingredients-lists{
+  margin: 0 20px 0 10px;
+}
+
+.complete-btn{
+  font-size: 16px;
+  background-color: #d9a38d;
+  border: none;
+  border-radius: 7px;
+  color: #FFFFFF;
+  margin-top: 15px;
+}
+
+
+/* レシピカード */
 
 .recipe-section{
   flex-direction: column;
@@ -102,6 +120,11 @@ section h2 {
   flex: 0 0 300px;
   min-width: 300px;
 }
+
+.recipe-card by-plan{
+
+}
+
 
 @media (max-width: 768px) {
   .recipe-card {
@@ -322,14 +345,14 @@ section h2 {
   font-weight: bold;
 }
 
+.ingredient-name-missing{
+  color: #e97c7c;
+  /* font-weight: bold; */
+}
+
 .ingredient-quantity {
   font-size: 14px;
   color: #9b6b5b;
-}
-
-/* 冷蔵庫一覧 */
-.user-fridge{
-  justify-content: center;
 }
 
 .add-to-shopping-list-btn{
@@ -338,7 +361,8 @@ section h2 {
   background-color: #dfa68c;
   border: none;
   border-radius: 10px;
-  margin-top: 30px;
+  margin-top: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 /* 作り方 */
@@ -389,6 +413,11 @@ section h2 {
   background-color: #d9a38d;
   border-radius: 7px;
   margin: 0 15px;
+}
+
+/* 冷蔵庫一覧 */
+.user-fridge{
+  justify-content: center;
 }
 
 /* 管理者用食材管理ページ */
