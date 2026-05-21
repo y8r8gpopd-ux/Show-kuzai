@@ -35,10 +35,11 @@
   </section>
 
   <section class="recipe-section">
-    <% if user_signed_in? %>
+    <% if user_signed_in? && @fridge_ingredient_ids.any? %>
       <h2 class="recipe-title">あなたにおすすめのレシピ</h2>
+      <span>おすすめ順</span>
     <% else %>
-      <h2 class="recipe-title">おすすめのレシピ</h2>
+      <h2 class="recipe-title">レシピ</h2>
     <% end %>
 
     <div class="recipe-area">
@@ -71,7 +72,6 @@
         <% end %>
       <% end %>
     </div>
-    <p>おすすめ順</p>
   </section>
 
   <!-- 食材登録フォーム -->

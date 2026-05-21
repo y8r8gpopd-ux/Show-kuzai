@@ -5,7 +5,7 @@ class FridgeItemsController < ApplicationController
     # nilガード↓先に空配列用意して、下のif文で再代入
     @fridge_ingredient_ids ||= []
 
-    if user_signed_in? && current_user.fridge_items.any?
+    if user_signed_in? && current_user.fridge_items.available.any?
       # ユーザーの冷蔵庫の使い切ってない食材
       fridge_items = current_user.fridge_items.available 
       # そこから食材ID抽出    
@@ -77,7 +77,7 @@ class FridgeItemsController < ApplicationController
   def update
     @fridge_item = FridgeItem.find(params[:id])
     if @fridge_item.update(fridge_item_params)
-      redirect_to root_path
+      redirect_to manage_fridge_items_path
     else
       render :manage, status: :unprocessable_entity
     end
@@ -86,7 +86,7 @@ class FridgeItemsController < ApplicationController
   private
   
   def fridge_item_params
-    params.require(:fridge_item).permit(:quantity, :unit_id).merge(user_id: current_user.id)
+    params.require(:fridge_item).permit(:quantity, :unit_id, :status_id, :purchased_at).merge(user_id: current_user.id)
   end
 
 end
