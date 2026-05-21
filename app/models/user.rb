@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :cooking_histories
   has_many :shopping_lists
 
-  validates :password, format:{with: /\A[a-z0-9]{6,}\z/i }
+  validates :password, format:{with: /\A[a-z0-9]{6,}\z/i }, allow_blank: true
 end
