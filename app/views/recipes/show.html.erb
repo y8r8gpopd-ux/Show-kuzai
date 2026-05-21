@@ -41,6 +41,10 @@
           </li>
         <% end %>
       </ul>
+      
+      <% if user_signed_in? %>
+        <%= button_to 'お買い物リストに登録', add_to_shopping_list_recipe_path(@recipe), method: :post , class: "add-to-shopping-list-btn" %>
+      <% end %>
     </div>
 
   </div>
