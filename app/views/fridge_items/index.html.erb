@@ -3,6 +3,7 @@
     <% if user_signed_in? && current_user.shopping_lists.any? %>
       <h2 class="today-plan">今日はこれにした！</h2>
       <div class="plans">
+
         <% @shopping_lists.each do |shopping_list| %>
           <div class="recipe-card">
             <%= link_to image_tag(shopping_list.recipe.image), recipe_path(shopping_list.recipe.id) %>
@@ -11,19 +12,24 @@
             </div>
           </div>
           <div class="missing-ingredients-lists">
-            <%= form_with url: complete_shopping_list_path(shopping_list), method: :post, local: true do %>
-              <% shopping_list.shopping_list_items.each do |item| %>
-                <% unless item.purchased? %>
-                  <div class="shopping-item">
-                    <%= check_box_tag "purchased_item_ids[]", item.id %>
-                      <span><%= item.ingredient.name %></span>
-                 </div>
+            <% unless shopping_list.shopping_list_items.all?(&:purchased) %>
+
+              <%= form_with url: complete_shopping_list_path(shopping_list), method: :post, local: true do %>
+                <% shopping_list.shopping_list_items.each do |item| %>
+                  <% unless item.purchased? %>
+                    <div class="shopping-item">
+                      <%= check_box_tag "purchased_item_ids[]", item.id %>
+                        <span><%= item.ingredient.name %></span>
+                    </div>
+                  <% end %>
                 <% end %>
+                <%= submit_tag "お買い物完了！", class: "complete-btn" %>
               <% end %>
-              <%= submit_tag "お買い物完了！", class: "complete-btn" %>
+
             <% end %>
           </div>
         <% end %>
+
       </div>
     <% end %>
   </section>

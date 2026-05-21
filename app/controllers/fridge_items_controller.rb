@@ -71,7 +71,7 @@ class FridgeItemsController < ApplicationController
   end
 
   def manage
-    @fridge_items = FridgeItem.where(user_id: current_user.id)
+    @fridge_items = FridgeItem.where(user_id: current_user.id).order(purchased_at: :DESC)
   end
 
   def update

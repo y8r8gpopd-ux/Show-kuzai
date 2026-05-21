@@ -25,11 +25,6 @@ class ShoppingListsController < ApplicationController
       end
     end
 
-    # shopping_list_itemsが全て購入済みになったらshopping_listを破棄
-    if shopping_list.shopping_list_items.all?(&:purchased)
-      shopping_list.destroy
-    end
-
     redirect_to root_path
   end
 

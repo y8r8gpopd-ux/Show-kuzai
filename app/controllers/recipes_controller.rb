@@ -43,7 +43,10 @@ class RecipesController < ApplicationController
 
     # ユーザーの調理履歴作成
     current_user.cooking_histories.create(recipe_id: @recipe.id)
-                
+    
+    shopping_list = current_user.shopping_lists.find_by(recipe_id: @recipe.id)
+    shopping_list&.destroy
+    
     redirect_to root_path
   end
 
