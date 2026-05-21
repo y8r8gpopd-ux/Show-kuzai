@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :recipes do
     member do
       patch :cook
+      post :add_to_shopping_list
     end
   end
 
