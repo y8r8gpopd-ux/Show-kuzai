@@ -5,6 +5,7 @@ class Recipe < ApplicationRecord
   has_one_attached :image
   belongs_to :genre
   has_many :cooking_histories
+  has_many :shopping_lists
   
   accepts_nested_attributes_for :recipe_ingredients,
                                 allow_destroy: true,

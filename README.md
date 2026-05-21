@@ -107,6 +107,8 @@
 - belongs_to :user
 - belongs_to :recipe
 - has_many :shopping_list_items, dependent: :destroy
+- has_many :ingredient, through: shopping_list_items
+
 
 
 # SHOPPING_LIST_ITEMSテーブル
@@ -116,6 +118,11 @@
 |shopping_list_id|references|null: false, foreign_key: true|
 |ingredient_id|references|null: false, foreign_key: true|
 |purchased|boolean|null: false, default: false|
+|quantity|integer|任意|
+||||
+||ActiveHash||
+|unit_id|integer|任意|
+
 
 ## shopping_list_itemsアソシエーション
 
