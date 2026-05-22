@@ -79,7 +79,19 @@
   </div>
 
   <% if user_signed_in? %>
-    <%= button_to "調理完了！",cook_recipe_path(@recipe),method: :patch , class: "cooked-btn" %>
+    <div class="cook-check-area">
+      <p class="cook-check-title">冷蔵庫の食材は使い切れましたか？</p>
+      <%= form_with url: cook_recipe_path(@recipe), method: :patch do %>
+        <% @recipe.recipe_ingredients.each do |ri| %>
+          <div class="cook-check-list">
+            <%= check_box_tag "used_ingredient_ids[]", ri.ingredient_id, true %>
+            <%= ri.ingredient.name %>
+          </div>
+        <% end %>
+        <span>は使い切った！</span>
+        <%= submit_tag "調理完了！", class: "cooked-btn" %>
+      <% end %>
+    </div>
   <% end %>
 
   <% if user_signed_in? && current_user.admin? %>

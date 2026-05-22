@@ -396,14 +396,30 @@ section h2 {
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
+.cook-check-area{
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.cook-check-title{
+  font-size: 16px;
+  font-weight: bold;
+}
+.cook-check-list{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
 .cooked-btn{
-  height: 70px;
-  width: 150px;
+  height: 100px;
+  width: 200px;
   background-color: #d9a38d;
   border: none;
   border-radius: 7px;
   color: white;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: bold;
   margin: 20px auto;
   display: block;

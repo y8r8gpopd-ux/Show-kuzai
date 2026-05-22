@@ -29,11 +29,12 @@ class RecipesController < ApplicationController
   def cook
     @recipe = Recipe.find(params[:id])
 
-    # レシピの載っている食材を冷蔵庫の古いものから１つずつ取り出す
-    @recipe.recipe_ingredients.each do |ri|
+    # レシピの載っている食材を冷蔵庫の古いものから１つずつレシピと参照
+    used_ids = params[:used_ingredient_ids] || [] 
+    used_ids.each do |ingredient_id|
       fridge_item = current_user.fridge_items
                                 .available
-                                .where(ingredient_id: ri.ingredient_id)
+                                .where(ingredient_id: ingredient_id)
                                 .order(:purchased_at)
                                 .first
 
@@ -43,7 +44,7 @@ class RecipesController < ApplicationController
 
     # ユーザーの調理履歴作成
     current_user.cooking_histories.create(recipe_id: @recipe.id)
-    
+    # お買い物リストに載っていたらリスト破棄
     shopping_list = current_user.shopping_lists.find_by(recipe_id: @recipe.id)
     shopping_list&.destroy
     
