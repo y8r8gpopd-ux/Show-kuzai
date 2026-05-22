@@ -121,10 +121,6 @@ section h2 {
   min-width: 300px;
 }
 
-.recipe-card by-plan{
-
-}
-
 
 @media (max-width: 768px) {
   .recipe-card {
@@ -519,4 +515,48 @@ section h2 {
   .recipe-how-to h2 {
     font-size: 28px;
   }
+}
+
+/* レシピ検索ページ */
+
+.recipe-search-title{
+  margin: 7px;
+}
+
+.recipe-search-form{
+  display: flex;
+  margin-left: 10px;
+}
+
+.recipe-search-input{
+  border: solid 1px #d9a38d;
+  border-radius: 7px;
+  font-size: 18px; 
+  padding: 5px;
+}
+
+.genre-select{
+  border: solid 1px #d9a38d;
+  border-radius: 7px;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.recipe-search-btn{
+  height: 30px;
+  width: 70px;
+  background-color: #d9a38d;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.result-recipe-area{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  margin-left: 20px;
 }

@@ -17,6 +17,15 @@ class Recipe < ApplicationRecord
   validates :name, :image, :how_to_cook, presence: true
   validate :must_have_ingredient
 
+  # ransack用の記述
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "genre_id", "how_to_cook", "created_at", "updated_at"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["ingredients", "recipe_ingredients"]
+  end
+  
   private
    def must_have_ingredient
     if recipe_ingredients.empty?

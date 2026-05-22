@@ -1,0 +1,25 @@
+<div class="main">
+
+  <section class="search-section">
+    <h2 class="recipe-search-title">レシピ検索</h2>
+    <div class="recipe-search-form">
+      <%= search_form_for @q, url: recipes_path do |f| %>
+        <%= f.search_field :name_or_ingredients_name_cont, class: "recipe-search-input" %>
+        <%= f.collection_select :genre_id_eq, Genre.all, :id, :name, {include_blank: "ジャンル選択"}, {class: "genre-select"} %>
+        <%= f.submit "検索", class: "recipe-search-btn" %>
+      <% end %>
+    </div>
+  </section>
+
+  <div class="result-recipe-area">
+    <% @recipes.each do |recipe| %>
+      <div class="recipe-card">
+        <%= link_to image_tag(recipe.image), recipe_path(recipe.id) %>
+        <div class="recipe-body">
+          <h3><%= recipe.name %></h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>

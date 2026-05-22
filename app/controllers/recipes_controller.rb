@@ -1,6 +1,11 @@
 class RecipesController < ApplicationController
   before_action :authenticate_admin!, only: [:new, :create, :edit, :update]
 
+  def index
+    @q = Recipe.ransack(params[:q])
+    @recipes = @q.result(distinct: true) # ←重複除外
+  end
+
   def new
     @recipe = Recipe.new
     @recipe.recipe_ingredients.build
