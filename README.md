@@ -1,6 +1,6 @@
 # Show-kuzai (食材)
 <p align="center">
-  <img width="800" alt="アプリ概要" src="docs/top.png">
+  <img width="800" alt="アプリ概要" src="docs/.png">
 </p>
 #### Show-kuzaiは「**冷蔵庫の中身からレシピを提案**」するアプリです
 
