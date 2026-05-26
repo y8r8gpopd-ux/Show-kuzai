@@ -28,7 +28,7 @@ http://52.192.121.118
 - 食材編集
 - 調理完了時に自動で食材消費
 <p align="center">
-  <img width="800" alt="アプリ概要" src="docs/説明1.png">
+  <img width="800" alt="アプリ概要" src="docs/説明１.png">
 </p>
 
 #### ユーザ毎のレシピ提案機能
@@ -38,17 +38,17 @@ http://52.192.121.118
 - レシピ詳細ページに「何が足りないか」を表示(ボタン一つでお買い物リスト化)
 - レシピ詳細ページの「調理完了」ボタンで自動で食材消費
 <p align="center">
-  <img width="800" alt="アプリ概要" src="docs/説明2.png">
+  <img width="800" alt="アプリ概要" src="docs/説明２.png">
 </p>
 <p align="center">
-  <img width="800" alt="アプリ概要" src="docs/説明3.png">
+  <img width="800" alt="アプリ概要" src="docs/説明３.png">
 </p>
 
 #### お買い物メモ機能
 - レシピに足りない食材をリスト化して表示
 - 購入完了ボタンを押すと冷蔵庫に自動で登録
 <p align="center">
-  <img width="800" alt="アプリ概要" src="docs/説明4.png">
+  <img width="800" alt="アプリ概要" src="docs/説明４.png">
 </p>
 #### レシピ検索機能
 - ジャンル(洋食、和食等)、使用食材名、レシピ名から検索可能
