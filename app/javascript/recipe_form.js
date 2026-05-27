@@ -1,7 +1,7 @@
 const recipeForm = function () {
 
-  const recipeCard = document.querySelector(".recipe-form-card");
-  if (!recipeCard) return;
+  const recipeFormCard = document.querySelector(".recipe-form-card");
+  if (!recipeFormCard) return;
   const buildIngredientBtn = document.getElementById("add-ingredient");
 
 
@@ -26,16 +26,25 @@ const recipeForm = function () {
 
     const deleteBtns = document.querySelectorAll(".delete-btn");
 
+    // 削除ボタンでhidden destroy formを「１」にして非表示にする
     deleteBtns.forEach((btn) => {
-      btn.onclick = () => {
+      btn.addEventListener("click", () => {
         // closetは属する親要素を探す
-        btn.closest(".ingredient-card").remove();
-      };
+        const ingredientCard = btn.closest(".ingredient-card");
 
+        const destroyField = ingredientCard.querySelector('input[name*="_destroy"]');
+
+        if (destroyField) {
+          destroyField.value = "1";
+        }
+
+        ingredientCard.style.display = "none";
+      });
     });
 
-  }
+  };
 
+  attachEvents();
   buildIngredientBtn.addEventListener("click", buildCard);
 };
 

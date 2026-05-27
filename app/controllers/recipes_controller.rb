@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:cook, :add_to_shopping_list]
 
   def index
     @q = Recipe.ransack(params[:q])
@@ -119,6 +120,8 @@ class RecipesController < ApplicationController
       :image,
       :how_to_cook,
       recipe_ingredients_attributes: [
+        :_destroy,
+        :id,
         :ingredient_id,
         :quantity,
         :unit_id
@@ -129,4 +132,5 @@ class RecipesController < ApplicationController
     def authenticate_admin!
       redirect_to root_path unless current_user.admin?
     end
+
 end
