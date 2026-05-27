@@ -61,8 +61,8 @@ class RecipesController < ApplicationController
   end
 
   def update
-    @recipe = Recipe.new(recipe_params)
-    if @recipe.save
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params)
       redirect_to root_path
     else
       flash.now[:alert] = "やり直してください"
