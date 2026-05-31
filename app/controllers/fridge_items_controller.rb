@@ -27,7 +27,7 @@ class FridgeItemsController < ApplicationController
           end
 
           if fridge_item
-            score += (Date.today - fridge_item.purchased_at).to_i
+            score += (Date.today - fridge_item.purchased_at).to_i + 1
           end
         end
 
