@@ -14,5 +14,22 @@ RSpec.describe User, type: :model do
       end
 
     end
+
+    context "新規登録できない時" do
+
+       it "メールアドレスが入力されていない" do
+        @user.email = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+
+      it "メールアドレスに@を含まない" do
+        @user.email = "test123"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+
+
+    end
   end
 end
