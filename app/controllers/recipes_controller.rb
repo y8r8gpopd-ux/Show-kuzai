@@ -15,10 +15,16 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
 
+    # nilガード
+    @fridge_ingredient_ids = []
+
     # レシピに足りない食材表示用インスタンス 
-    @fridge_ingredient_ids = current_user.fridge_items
-                                     .available
-                                     .pluck(:ingredient_id)
+    if user_signed_in?
+      @fridge_ingredient_ids = current_user.fridge_items
+                                      .available
+                                      .pluck(:ingredient_id)
+    end
+
   end
 
   def create
