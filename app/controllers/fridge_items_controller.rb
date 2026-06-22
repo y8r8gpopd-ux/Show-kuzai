@@ -1,4 +1,7 @@
 class FridgeItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :manage, :update] 
+
+
   def index
     @fridge_item = FridgeItem.new
     @recipes = Recipe.all
