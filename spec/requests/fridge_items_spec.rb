@@ -14,7 +14,7 @@ RSpec.describe "FridgeItems", type: :request do
 
     context "ログインしてる時" do
 
-      let(:user) { FactoryBot.create(:user) }
+      let(:user) { create(:user) }
 
       before do 
         sign_in user
